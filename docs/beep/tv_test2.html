@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>カラーバーテスト</title>
+<style>
+*{margin:0;padding:0}
+body{height:100vh}
+</style>
+<script>
+let isPlay = false
+let oscillator
+async function soundPlay(){
+    if (isPlay){
+        oscillator.stop()
+        isPlay = !isPlay
+        return
+    }
+    const AudioContext = window.AudioContext || window.webkitAudioContext
+    const audioContext = new AudioContext()
+    const gainNode = audioContext.createGain()
+    oscillator = audioContext.createOscillator()
+    isPlay = !isPlay
+    audioContext.loop = true
+    gainNode.connect(audioContext.destination)
+    gainNode.gain.value = 0.05
+    oscillator.type = "sine"
+    oscillator.frequency.value = 1000
+    oscillator.connect(gainNode)
+    oscillator.start(audioContext.currentTime)
+    return
+}
+</script>
+</head>
+<body onclick="soundPlay()">
+<svg  height="100%" width="100%" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <defs>
+        <linearGradient id="g0">
+            <stop offset="0" stop-color="#000"/>
+            <stop offset="1" stop-color="#fff"/>
+        </linearGradient>
+    </defs>
+    <g>
+        <rect width="240" height="630" fill="#000" fill-opacity="0.4" />
+        <rect width="205.71" x="240"    height="630" fill="#d5d5d5" />
+        <rect width="205.71" x="445.71" height="630" fill="#d5d500" />
+        <rect width="205.71" x="651.42" height="630" fill="#00d5d5" />
+        <rect width="205.71" x="857.13" height="630" fill="#00d500" />
+        <rect width="205.71" x="1062.84" height="630" fill="#d500d5" />
+        <rect width="205.71" x="1268.55" height="630" fill="#d50000" />
+        <rect width="205.71" x="1474.26" height="630" fill="#0000d5" />
+        <rect width="240" x="1680" height="630" fill="#000" fill-opacity="0.4" />
+    </g>
+    <g>
+        <rect width="240" y="630" height="90" fill="#0ff" />
+        <rect width="240" y="630" height="90" x="240" width="205.71" fill="#fff" />
+        <rect width="1234.29" y="630" height="90" x="445.71" fill="#d5d5d5" />
+        <rect width="240" y="630" x="1680" height="90" fill="#00f" />
+    </g>
+    <g>
+        <rect width="240" y="720" height="90" fill="#ff0" />
+        <rect width="1440" y="720" height="90" x="240" width="205.71" fill="url(#g0)" />
+        <rect width="240" y="720" x="1680" height="90" fill="#f00" />
+    </g>
+    <g>
+        <rect width="240" y="810" height="360" fill="#4c4c4c" />
+        <rect width="308.58" x="240" y="810" height="360" fill="#000" />
+        <rect width="411.42" x="548.58" y="810" height="360" fill="#fff" />
+        <rect width="171.44" x="960" y="810" height="360" fill="#000" />
+        <rect width="69"  x="1131" y="810" height="360" fill="#141414" /> 
+        <rect width="69"  x="1200" y="810" height="360" fill="#000" />
+        <rect width="69.5"  x="1268" y="810" height="360" fill="#141414" />
+        <rect width="68.57"  x="1337.15" y="810" height="360" fill="#000" />
+        <rect width="69.5"  x="1405" y="810" height="360" fill="#202020" />
+        <rect width="205.71" x="1474.29" y="810" height="360" fill="#000" />
+        <rect width="240" y="810" x="1680" height="360" fill="#4c4c4c" />
+    </g>
+</svg>
+</body>
+</html>

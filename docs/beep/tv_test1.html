@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>カラーバーテスト</title>
+<style>
+*{margin:0;padding:0}
+body{height:100vh}
+
+header, main, aside, footer{
+width:100%;
+}
+
+header div, main div, aside div, footer div{
+height:100%;
+display:flex;
+}
+
+header div div:first-of-type,header div div:last-of-type, main div div:first-of-type,main div div:last-of-type,aside div div:first-of-type,aside div div:last-of-type,footer div div:first-of-type,footer div div:last-of-type{
+width:12.5%;
+}
+
+header{
+height:calc(calc(100% / 12) * 7);
+}
+
+footer{
+height:calc(100% / 12 * 3);
+}
+
+header div div:first-of-type,header div div:last-of-type{
+background:rgba(0,0,0,.4);
+}
+
+header div div:nth-of-type(2){
+background:#d5d5d5;
+width:calc(100% / 4 * 3 / 7);
+}
+
+header div div:nth-of-type(3){
+background:#d5d500;
+width:calc(100% / 4 * 3 / 7);
+}
+
+header div div:nth-of-type(4){
+background:#00d5d5;
+width:calc(100% / 4 * 3 / 7);
+}
+
+header div div:nth-of-type(5){
+background:#00d500;
+width:calc(100% / 4 * 3 / 7);
+}
+
+header div div:nth-of-type(6){
+background:#d500d5;
+width:calc(100% / 4 * 3 / 7);
+}
+
+header div div:nth-of-type(7){
+background:#d50000;
+width:calc(100% / 4 * 3 / 7);
+}
+
+header div div:nth-of-type(8){
+background:#0000d5;
+width:calc(100% / 4 * 3 / 7);
+}
+
+main , aside{
+height:calc(100% / 12);
+}
+
+main > div{
+width:100vw;
+}
+
+main div div:first-of-type{
+width:12.5%;
+background:#00ffff;
+}
+
+main div div:last-of-type{
+width:12.5%;
+background:#0000ff;
+}
+
+main div div:nth-of-type(2){
+width:calc(100% / 4 * 3 / 7);
+background:#fff;
+}
+
+main div div:nth-of-type(3){
+background:#d5d5d5;
+flex: 1;
+}
+
+aside div div:first-of-type{
+background:#ffff00;
+}
+
+aside div div:last-of-type{
+background:#ff0000;
+}
+
+aside div div:nth-of-type(2){
+flex:1;
+background: linear-gradient(to right, black, white);
+}
+
+footer div div:first-of-type, footer div div:last-of-type{
+background:#4c4c4c;
+}
+
+footer div div:nth-of-type(2){
+background:#000;
+width:calc( 100% / 4 * 3 / 4.5 )
+}
+
+footer div div:nth-of-type(3){
+background:#fff;
+width:calc(100% / 4 * 3 / 4);
+}
+
+footer div div:nth-of-type(5){
+background:#141414;
+width:calc((100% / 4 * 3 ) / 21);
+}
+
+footer div div:nth-of-type(6){
+background:#000;
+width:calc((100% / 4 * 3 ) / 21);
+}
+
+footer div div:nth-of-type(7){
+background:#141414;
+width:calc((100% / 4 * 3 ) / 21);
+}
+
+footer div div:nth-of-type(8){
+background:#000;
+width:calc((100% / 4 * 3 ) / 21);
+}
+
+footer div div:nth-of-type(9){
+background:#202020;
+width:calc((100% / 4 * 3 ) / 21);
+}
+
+footer div div:nth-of-type(10){
+background:#000;
+width:calc((100% / 4 * 3 ) / 7);
+}
+
+footer div div:nth-of-type(4){
+flex:1;
+background:#000;
+}
+</style>
+<script>
+let isPlay = false
+let oscillator
+async function soundPlay(){
+    if (isPlay){
+        oscillator.stop()
+        isPlay = !isPlay
+        return
+    }
+    const AudioContext = window.AudioContext || window.webkitAudioContext
+    const audioContext = new AudioContext()
+    const gainNode = audioContext.createGain()
+    oscillator = audioContext.createOscillator()
+    isPlay = !isPlay
+    audioContext.loop = true
+    gainNode.connect(audioContext.destination)
+    gainNode.gain.value = 0.05
+    oscillator.type = "sine"
+    oscillator.frequency.value = 1000
+    oscillator.connect(gainNode)
+    oscillator.start(audioContext.currentTime)
+    return
+}
+</script>
+</head>
+<body onclick="soundPlay()">
+<header>
+    <div>
+        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+</header>
+<main>
+    <div>
+        <div></div><div></div><div></div><div></div>
+    </div>
+</main>
+<aside>
+    <div>
+        <div></div><div></div><div></div>
+    </div>
+</aside>
+<footer>
+    <div>
+        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+</footer>
+</body>
+</html>
