@@ -633,8 +633,8 @@ const soundPlay = async(sound_type) => {
 
     if (sound_type == "coin"){
         oscillator.type = "square"
-        oscillator.frequency.setValueAtTime(1975.533, audioContext.currentTime)
-        oscillator.frequency.setValueAtTime(2637.02, audioContext.currentTime + 0.08)
+        oscillator.frequency.setValueAtTime(987.766, audioContext.currentTime)//B
+        oscillator.frequency.setValueAtTime(1318.51, audioContext.currentTime + 0.08)//E
         oscillator.start()
         oscillator.stop(.5)
         return
